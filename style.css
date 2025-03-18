@@ -2,41 +2,41 @@ body {
     background-image: url('https://cdn.culturagenial.com/imagens/the-school-of-athens-by-raffaello-sanzio-da-urbino-cke.jpg?class=article');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; /* Adicionado para centralizar a imagem */
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Alterado para min-height */
-    overflow-y: auto; /* Adicionado para barra de rolagem se necessário */
+    min-height: 100vh;
+    overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
 
 .login-container {
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 40px;
+    padding: 30px; /* Diminuído o padding */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 350px; /* Alterado para max-width */
-    margin: 20px; /* Adicionado margem para responsividade */
+    max-width: 300px; /* Diminuído o max-width */
+    margin: 20px;
 }
 
 h2 {
     color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 25px; /* Diminuído o margin-bottom */
+    font-size: 24px; /* Diminuído o font-size */
     font-weight: 600;
 }
 
 input[type="text"],
 input[type="password"] {
     width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 8px; /* Diminuído o padding */
+    margin-bottom: 15px; /* Diminuído o margin-bottom */
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px; /* Diminuído o font-size */
     transition: border-color 0.3s;
 }
 
@@ -49,10 +49,10 @@ input[type="password"]:focus {
 button {
     background-color: #007bff;
     color: white;
-    padding: 12px 20px;
+    padding: 10px 18px; /* Diminuído o padding */
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px; /* Diminuído o font-size */
     cursor: pointer;
     transition: background-color 0.3s;
     width: 100%;
@@ -63,13 +63,15 @@ button:hover {
 }
 
 p {
-    margin-top: 20px;
+    margin-top: 15px; /* Diminuído o margin-top */
+    font-size: 14px; /* Diminuído o font-size */
 }
 
 a {
     color: #007bff;
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 14px; /* Diminuído o font-size */
 }
 
 a:hover {
