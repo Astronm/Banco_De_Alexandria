@@ -7,39 +7,31 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
 
-.login-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Mantém a cor original */
-    padding: 20px; /* Ajustado para o mesmo do código de referência */
-    border-radius: 8px; /* Ajustado para o mesmo do código de referência */
+#login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
     text-align: center;
-    display: flex; /* Adicionado */
-    flex-direction: column; /* Adicionado */
-    align-items: center; /* Adicionado */
-    border: 2px solid #333; /* Adicionado */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adicionado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin: 20px;
-}
-
-h2 {
-    color: #333; /* Mantém a cor original */
-    margin-bottom: 20px; /* Ajustado */
-    font-size: 24px;
-    font-weight: 600;
 }
 
 input[type="text"],
 input[type="password"] {
-    width: 80%; /* Ajustado para 80% */
-    max-width: 300px; /* Adicionado max-width */
-    padding: 10px; /* Ajustado */
-    margin-bottom: 10px; /* Ajustado */
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
     border: none;
-    border-radius: 4px; /* Ajustado */
+    border-radius: 4px;
     font-size: 14px;
     transition: border-color 0.3s;
 }
@@ -53,11 +45,11 @@ input[type="password"]:focus {
 button {
     background-color: #007bff;
     color: white;
-    width: 70%; /* Ajustado para 70% */
-    max-width: 250px; /* Adicionado max-width */
-    padding: 10px; /* Ajustado */
+    width: 70%;
+    max-width: 250px;
+    padding: 10px;
     border: none;
-    border-radius: 4px; /* Ajustado */
+    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -68,7 +60,7 @@ button:hover {
 }
 
 p {
-    margin-top: 10px; /* Ajustado */
+    margin-top: 10px;
     font-size: 14px;
     cursor: pointer;
 }
