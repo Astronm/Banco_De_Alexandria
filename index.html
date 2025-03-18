@@ -9,16 +9,32 @@
 </head>
 <body>
     <div id="app">
-        <div id="login-container">
+        <main id="login-container">
             <h1>Login</h1>
-            <form id="login-form">
-                <input type="text" id="username" placeholder="Nome de usuário" required>
-                <input type="password" id="password" placeholder="Senha" required>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div>
+                    <label for="username">Nome de usuário</label>
+                    <input type="text" id="username" placeholder="Nome de usuário" required>
+                </div>
+                <div>
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Senha" required>
+                </div>
                 <button type="submit">Entrar</button>
                 <p>Não tem uma conta? <a href="#" id="create-account">Crie uma</a></p>
             </form>
-        </div>
+        </main>
     </div>
     <script src="script.js"></script>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            // Aqui você pode adicionar a lógica de autenticação
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            console.log('Usuário:', username, 'Senha:', password);
+            // Adicione sua lógica de autenticação aqui
+        }
+    </script>
 </body>
 </html>
