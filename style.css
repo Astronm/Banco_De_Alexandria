@@ -7,13 +7,12 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
 
-.login-container {
-    background-color: rgba(255, 255, 255, 0.8);
+#login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Aumentei a opacidade para melhor legibilidade */
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -25,20 +24,13 @@ body {
     margin: 20px;
 }
 
-h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
 input[type="text"],
 input[type="password"] {
     width: 80%;
     max-width: 300px;
     padding: 10px;
     margin-bottom: 10px;
-    border: none;
+    border: 1px solid #ccc; /* Adicionei uma borda padrão */
     border-radius: 4px;
     font-size: 14px;
     transition: border-color 0.3s;
@@ -67,6 +59,10 @@ button:hover {
     background-color: #0056b3;
 }
 
+button:focus {
+    outline: 2px solid #0056b3; /* Adicionei um foco visível para o botão */
+}
+
 p {
     margin-top: 10px;
     font-size: 14px;
@@ -82,4 +78,17 @@ a {
 
 a:hover {
     color: #0056b3;
+}
+
+a:focus {
+    outline: 2px solid #0056b3; /* Adicionei um foco visível para links */
+}
+
+/* Regras de mídia para responsividade */
+@media (max-width: 600px) {
+    input[type="text"],
+    input[type="password"],
+    button {
+        width: 90%; /* Aumenta a largura em telas menores */
+    }
 }
