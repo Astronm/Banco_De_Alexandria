@@ -10,13 +10,12 @@ body {
     overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
-    color: white; /* Adicionado para garantir que o texto seja branco */
 }
 
 .login-container {
-    background-color: rgba(0, 0, 0, 0.8); /* Alterado para o mesmo do código de referência */
-    padding: 20px; /* Alterado para o mesmo do código de referência */
-    border-radius: 8px; /* Alterado para o mesmo do código de referência */
+    background-color: rgba(255, 255, 255, 0.8); /* Mantém a cor original */
+    padding: 20px; /* Ajustado para o mesmo do código de referência */
+    border-radius: 8px; /* Ajustado para o mesmo do código de referência */
     text-align: center;
     display: flex; /* Adicionado */
     flex-direction: column; /* Adicionado */
@@ -27,7 +26,7 @@ body {
 }
 
 h2 {
-    color: white; /* Alterado para branco */
+    color: #333; /* Mantém a cor original */
     margin-bottom: 20px; /* Ajustado */
     font-size: 24px;
     font-weight: 600;
@@ -39,12 +38,10 @@ input[type="password"] {
     max-width: 300px; /* Adicionado max-width */
     padding: 10px; /* Ajustado */
     margin-bottom: 10px; /* Ajustado */
-    border: none; /* Removido */
+    border: none;
     border-radius: 4px; /* Ajustado */
     font-size: 14px;
     transition: border-color 0.3s;
-    background-color: white; /* Adicionado */
-    color: black; /* Adicionado */
 }
 
 input[type="text"]:focus,
@@ -85,4 +82,4 @@ a {
 
 a:hover {
     color: #0056b3;
-    }
+}
