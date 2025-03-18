@@ -1,22 +1,25 @@
 body {
-    background-image: url('https://cdn.culturagenial.com/imagens/the-school-of-athens-by-raffaello-sanzio-da-urbino-cke.jpg?class=article'); /* Substitua pela URL da sua imagem */
+    background-image: url('https://cdn.culturagenial.com/imagens/the-school-of-athens-by-raffaello-sanzio-da-urbino-cke.jpg?class=article');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center; /* Adicionado para centralizar a imagem */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Alterado para min-height */
+    overflow-y: auto; /* Adicionado para barra de rolagem se necessário */
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
 
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco translúcido */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 350px;
+    max-width: 350px; /* Alterado para max-width */
+    margin: 20px; /* Adicionado margem para responsividade */
 }
 
 h2 {
