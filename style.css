@@ -1,49 +1,4 @@
 body {
-
-  margin: 0;
-
-  padding: 0;
-
-  font-family: sans-serif;
-
-  background-color: #000;
-
-  color: #fff;
-
-}
-
-.container {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  min-height: 100vh;
-
-  background-image: url('https://i.pinimg.com/736x/25/cb/e0/25cbe031cd4c1e0da6333698f3a69231.jpg');
-
-  background-size: cover;
-
-  background-position: center;
-
-}
-
-.login-container {
-
-  background-color: rgba(0, 0, 0, 0.8);
-
-  padding: 20px;
-
-  border-radius: 8px;
-
-  text-align: center;
-
-  display: flex;
-
-  flex-direction: column;
-body {
     background-image: url('https://cdn.culturagenial.com/imagens/the-school-of-athens-by-raffaello-sanzio-da-urbino-cke.jpg?class=article'); /* Substitua pela URL da sua imagem */
     background-size: cover;
     background-repeat: no-repeat;
