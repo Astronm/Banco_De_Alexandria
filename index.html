@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini App Telegram</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini App do Bot do Telegram</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="login-container">
-      <h2>Login</h2>
-      <input type="text" id="username" placeholder="Nome de Usuário">
-      <input type="password" id="password" placeholder="Senha">
-      <button id="login-btn">Entrar</button>
-      <p id="create-account">Criar conta</p>
-    </div>
-    <div class="hub-container" style="display: none;">
-      <h2>Bem-vindo(a)!</h2>
-      <div class="courses">
-        <div class="course">
-          <h3>Curso de Programação Web</h3>
-          <p>Aprenda HTML, CSS e JavaScript do zero.</p>
-          <button>Acessar</button>
-        </div>
-        <div class="course">
-          <h3>Curso de Design Gráfico</h3>
-          <p>Domine as ferramentas Adobe Photoshop e Illustrator.</p>
-          <button>Acessar</button>
-        </div>
+    <div id="app">
+        <div id="login-container">
+            <h1>Login</h1>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Nome de usuário" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+                <p>Não tem uma conta? <a href="register.html">Crie uma</a></p>
+            </form>
         </div>
     </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
