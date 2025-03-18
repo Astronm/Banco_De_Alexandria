@@ -10,34 +10,41 @@ body {
     overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
+    color: white; /* Adicionado para garantir que o texto seja branco */
 }
 
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 30px; /* Diminuído o padding */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.8); /* Alterado para o mesmo do código de referência */
+    padding: 20px; /* Alterado para o mesmo do código de referência */
+    border-radius: 8px; /* Alterado para o mesmo do código de referência */
     text-align: center;
-    max-width: 300px; /* Diminuído o max-width */
+    display: flex; /* Adicionado */
+    flex-direction: column; /* Adicionado */
+    align-items: center; /* Adicionado */
+    border: 2px solid #333; /* Adicionado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adicionado */
     margin: 20px;
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 25px; /* Diminuído o margin-bottom */
-    font-size: 24px; /* Diminuído o font-size */
+    color: white; /* Alterado para branco */
+    margin-bottom: 20px; /* Ajustado */
+    font-size: 24px;
     font-weight: 600;
 }
 
 input[type="text"],
 input[type="password"] {
-    width: calc(100% - 22px);
-    padding: 8px; /* Diminuído o padding */
-    margin-bottom: 15px; /* Diminuído o margin-bottom */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px; /* Diminuído o font-size */
+    width: 80%; /* Ajustado para 80% */
+    max-width: 300px; /* Adicionado max-width */
+    padding: 10px; /* Ajustado */
+    margin-bottom: 10px; /* Ajustado */
+    border: none; /* Removido */
+    border-radius: 4px; /* Ajustado */
+    font-size: 14px;
     transition: border-color 0.3s;
+    background-color: white; /* Adicionado */
+    color: black; /* Adicionado */
 }
 
 input[type="text"]:focus,
@@ -49,13 +56,14 @@ input[type="password"]:focus {
 button {
     background-color: #007bff;
     color: white;
-    padding: 10px 18px; /* Diminuído o padding */
+    width: 70%; /* Ajustado para 70% */
+    max-width: 250px; /* Adicionado max-width */
+    padding: 10px; /* Ajustado */
     border: none;
-    border-radius: 5px;
-    font-size: 16px; /* Diminuído o font-size */
+    border-radius: 4px; /* Ajustado */
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%;
 }
 
 button:hover {
@@ -63,17 +71,18 @@ button:hover {
 }
 
 p {
-    margin-top: 15px; /* Diminuído o margin-top */
-    font-size: 14px; /* Diminuído o font-size */
+    margin-top: 10px; /* Ajustado */
+    font-size: 14px;
+    cursor: pointer;
 }
 
 a {
     color: #007bff;
     text-decoration: none;
     transition: color 0.3s;
-    font-size: 14px; /* Diminuído o font-size */
+    font-size: 14px;
 }
 
 a:hover {
     color: #0056b3;
-}
+    }
