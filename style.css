@@ -2,14 +2,15 @@ body {
     background-image: url('https://cdn.culturagenial.com/imagens/the-school-of-athens-by-raffaello-sanzio-da-urbino-cke.jpg?class=article');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; /* Adicionado para centralizar a imagem */
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Alterado para min-height */
-    overflow-y: auto; /* Adicionado para barra de rolagem se necessário */
+    min-height: 100vh;
+    overflow-y: auto;
     margin: 0;
     font-family: 'Arial', sans-serif;
+    /*cê ta doido, lindo dms*/
 }
 
 .login-container {
