@@ -5,46 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sinapse - Banco de Questões</title>
   <style>
-    /* Reset e estilos base */
-    body, html {
+    /* Reset completo */
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
+      box-sizing: border-box;
     }
-    
-    /* Container do vídeo - Cobrindo 100% */
-    #video-container {
+
+    /* Vídeo de fundo cobrindo 100% */
+    .video-background {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
+      z-index: -1;
     }
-    
-    #video-background {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+
+    .video-background iframe {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transform: scale(1.2); /* Aumenta zoom para garantir cobertura */
       min-width: 100%;
       min-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: cover;
     }
-    
-    /* Caixa de login - Versão minimalista */
+
+    /* Container de login idêntico ao da versão com imagem */
     .login-container {
       background-color: rgba(0, 0, 0, 0.7);
       width: 90%;
       max-width: 350px;
       padding: 30px;
       border-radius: 10px;
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -52,48 +47,55 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(124, 77, 255, 0.3);
     }
-    
+
+    /* Mantido igual à versão com imagem */
     h2 {
       color: #b388ff;
       margin-bottom: 25px;
+      font-size: 28px;
     }
-    
+
     input {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      border: none;
+      border: 1px solid #ddd;
       border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
+      font-size: 16px;
     }
-    
+
     button {
-      background: linear-gradient(45deg, #7c4dff, #b388ff);
+      background-color: #007bff;
       color: white;
+      padding: 12px 20px;
       border: none;
-      padding: 12px;
-      width: 100%;
       border-radius: 5px;
+      width: 100%;
       cursor: pointer;
-      margin-top: 10px;
+      font-size: 18px;
     }
-    
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     .create-account {
+      color: #007bff;
+      text-decoration: none;
       display: block;
       margin-top: 20px;
-      color: #b388ff;
-      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <!-- Container do vídeo -->
-  <div id="video-container">
-    <iframe id="video-background" src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p" frameborder="0" allowfullscreen></iframe>
+  <!-- Vídeo de fundo -->
+  <div class="video-background">
+    <iframe src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p" 
+            frameborder="0" 
+            allow="autoplay; fullscreen"></iframe>
   </div>
 
-  <!-- Caixa de login -->
+  <!-- Container de login -->
   <div class="login-container">
     <h2>Login</h2>
     <input type="text" placeholder="Nome de Usuário" required>
@@ -103,26 +105,26 @@
   </div>
 
   <script>
-    // Redirecionamento após login
+    // Redirecionamento idêntico à versão com imagem
     document.getElementById('login-btn').addEventListener('click', function() {
       window.location.href = 'materias.html';
     });
-    
-    // Ajuste contínuo do vídeo
+
+    // Ajuste dinâmico do vídeo
     function adjustVideo() {
-      const video = document.getElementById('video-background');
+      const iframe = document.querySelector('.video-background iframe');
       const aspectRatio = 16/9;
       const windowRatio = window.innerWidth / window.innerHeight;
       
       if (windowRatio > aspectRatio) {
-        video.style.width = '100%';
-        video.style.height = 'auto';
+        iframe.style.width = '100%';
+        iframe.style.height = (window.innerHeight * 1.2) + 'px';
       } else {
-        video.style.width = 'auto';
-        video.style.height = '100%';
+        iframe.style.width = (window.innerWidth * 1.2) + 'px';
+        iframe.style.height = '100%';
       }
     }
-    
+
     window.addEventListener('resize', adjustVideo);
     adjustVideo();
   </script>
