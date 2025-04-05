@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo à Sinapse</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sinapse - Banco de Questões</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Player API do Vimeo -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <style>
+    .destaque {
+      color: #b388ff; /* Roxo claro */
+      text-shadow: 0 0 10px rgba(179, 136, 255, 0.7);
+    }
+    #entrar-btn {
+      background: linear-gradient(45deg, #7c4dff, #b388ff);
+      color: white;
+    }
+    #entrar-btn:hover {
+      box-shadow: 0 0 15px rgba(179, 136, 255, 0.5);
+    }
+    .welcome-container {
+      border-color: #7c4dff; /* Roxo mais escuro */
+    }
+  </style>
 </head>
 <body>
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="https://vimeo.com/1072780855" type="video/mp4">
-        Seu navegador não suporta a tag de vídeo.
-    </video>
+  <!-- Container do vídeo do Vimeo -->
+  <div id="vimeo-background"></div>
 
-    <div class="container">
-        <div class="welcome-container"> <h2>Bem-vindo(a) à Sinapse!</h2>
-            <p>Explore um universo de conhecimento e prepare-se para expandir seus horizontes.</p>
-            <button id="enter-btn">Entrar</button>
-        </div>
+  <div class="container">
+    <div class="welcome-container">
+      <h1>Bem-vindo à <span class="destaque">Sinapse</span></h1>
+      <p class="slogan">O catalisador da sua evolução intelectual</p>
+      <button id="entrar-btn">Ativar Conhecimento</button>
+      <p class="info">⚡ 100% focado em seu desenvolvimento neural</p>
     </div>
+  </div>
 
-    <script src="script.js"></script> </body>
+  <script>
+    // Configuração do vídeo de fundo do Vimeo
+    const backgroundPlayer = new Vimeo.Player('vimeo-background', {
+      id: 1072780855,
+      background: true,
+      autoplay: true,
+      muted: true,
+      loop: true,
+      quality: '1080p',
+      controls: false
+    });
+
+    // Redirecionamento para matérias
+    document.getElementById('entrar-btn').addEventListener('click', function() {
+      window.location.href = 'materias.html';
+    });
+  </script>
+</body>
 </html>
