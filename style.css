@@ -1,71 +1,93 @@
-/* style.css */
+/* Estilos Gerais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do elemento */
+}
+
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Impede barras de rolagem indesejadas causadas pelo vídeo */
+    position: relative; /* Necessário para o z-index do vídeo funcionar corretamente */
 }
 
-#video-background {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
+/* Estilos do Vídeo de Fundo */
+#bg-video {
+    position: fixed; /* Fixa o vídeo em relação à viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre toda a área, mantendo a proporção (pode cortar partes) */
+    z-index: -1; /* Coloca o vídeo atrás de todo o conteúdo */
+    filter: brightness(0.7); /* Opcional: Escurece um pouco o vídeo para melhor contraste do texto */
 }
 
+/* Container Principal (centraliza o conteúdo) */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px; /* Adiciona um respiro nas bordas da tela */
+}
+
+/* Caixa Preta Central ("Caixa Branca" modificada) */
 .welcome-container {
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  text-align: center;
-  max-width: 500px;
-  margin: 20px;
-  border: 2px solid #00ff88;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto com 80% de opacidade */
+    color: #fff; /* Cor do texto padrão para branco dentro da caixa */
+    padding: 30px; /* Aumenta o padding interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Sombra um pouco mais pronunciada */
+    text-align: center;
+    max-width: 450px; /* Aumenta um pouco a largura máxima */
+    width: 90%; /* Faz a caixa ocupar 90% da largura disponível, até o max-width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil clara para definir a caixa */
 }
 
-h1 {
-  color: #00ff88;
-  margin-bottom: 20px;
-  font-size: 2.5em;
-  text-transform: uppercase;
+/* Estilos do Título (h2) */
+h2 {
+    color: #eee; /* Cor um pouco mais suave que branco puro */
+    margin-bottom: 15px; /* Espaçamento abaixo do título */
+    font-size: 26px; /* Tamanho da fonte do título */
+    font-weight: 600;
 }
 
-.slogan {
-  color: #fff;
-  font-size: 1.2em;
-  margin-bottom: 30px;
+/* Estilos do Parágrafo (p) */
+p {
+    margin-bottom: 30px; /* Espaçamento abaixo do parágrafo */
+    font-size: 16px;
+    line-height: 1.5; /* Melhora a legibilidade */
+    color: #ddd; /* Cor do texto do parágrafo */
 }
 
-#entrar-btn {
-  background: linear-gradient(45deg, #00ff88, #00ccff);
-  color: #000;
-  padding: 15px 40px;
-  border: none;
-  border-radius: 25px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 20px 0;
+/* Estilos do Botão */
+button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    padding: 12px 25px; /* Padding interno */
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+    width: 80%; /* Largura do botão */
+    max-width: 200px; /* Largura máxima do botão */
 }
 
-#entrar-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+button:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Efeito de leve aumento ao passar o mouse */
 }
 
-.info {
-  color: #888;
-  font-size: 0.9em;
-  margin-top: 30px;
-}
-
-.destaque {
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+button:active {
+    transform: scale(0.98); /* Efeito de clique */
 }
