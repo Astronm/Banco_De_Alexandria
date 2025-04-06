@@ -6,92 +6,172 @@
   <title>Sinapse - Matérias</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Estilos específicos para esta página */
+    /* Estilos atualizados */
+    .container {
+      padding: 20px;
+      min-height: 100vh;
+    }
+
     .materias-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
     }
 
     .materia-card {
       background: rgba(0, 0, 0, 0.7);
-      border: 2px solid #00ff88;
+      border: 2px solid #7c4dff;
       border-radius: 10px;
-      padding: 15px;
-      text-align: center;
+      padding: 20px;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
     }
 
     .materia-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(124, 77, 255, 0.4);
     }
 
-    .materia-icon {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .pdfs-container {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .pdf-list {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .pdf-item {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .pdf-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .download-area {
+      border: 2px dashed #7c4dff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      min-height: 100px;
     }
 
     .back-btn {
       position: fixed;
-      top: 20px;
+      bottom: 20px;
       left: 20px;
       background: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 25px;
       cursor: pointer;
+      z-index: 100;
     }
   </style>
 </head>
 <body>
-  <!-- Vídeo de fundo (mesmo do index.html) -->
-  <video autoplay muted loop id="video-background">
-    <source src="SEU_VIDEO.mp4" type="video/mp4">
-  </video>
-
-  <button class="back-btn" onclick="window.history.back()">← Voltar</button>
+  <div class="video-background">
+    <iframe src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p" 
+            frameborder="0" 
+            allow="autoplay; fullscreen"></iframe>
+  </div>
 
   <div class="container">
     <div class="welcome-container">
-      <h1>Selecione a Matéria</h1>
-      <p class="slogan">Escolha seu campo de conhecimento</p>
-      
-      <div class="materias-grid">
-        <!-- Cartões de matérias -->
-        <div class="materia-card" onclick="carregarMateria('matematica')">
-          <div class="materia-icon">🧮</div>
-          <h3>Matemática</h3>
+      <!-- Conteúdo dinâmico -->
+      <div id="main-content">
+        <h1>Selecione a Matéria</h1>
+        <div class="materias-grid">
+          <div class="materia-card" onclick="carregarPDFs('Matemática')">
+            <h3>🧮 Matemática</h3>
+          </div>
+          <div class="materia-card" onclick="carregarPDFs('Física')">
+            <h3>⚛️ Física</h3>
+          </div>
+          <div class="materia-card" onclick="carregarPDFs('Química')">
+            <h3>🧪 Química</h3>
+          </div>
         </div>
+      </div>
 
-        <div class="materia-card" onclick="carregarMateria('fisica')">
-          <div class="materia-icon">⚛️</div>
-          <h3>Física</h3>
-        </div>
-
-        <div class="materia-card" onclick="carregarMateria('quimica')">
-          <div class="materia-icon">🧪</div>
-          <h3>Química</h3>
-        </div>
-
-        <div class="materia-card" onclick="carregarMateria('biologia')">
-          <div class="materia-icon">🧬</div>
-          <h3>Biologia</h3>
+      <!-- Seção de PDFs -->
+      <div id="pdfs-section" class="pdfs-container">
+        <h2 id="pdfs-title"></h2>
+        <div class="pdf-list" id="pdf-list"></div>
+        <div class="download-area" id="download-area">
+          <p>Selecione os PDFs acima para exibir aqui</p>
         </div>
       </div>
     </div>
   </div>
 
+  <button class="back-btn" onclick="window.history.back()">← Voltar</button>
+
   <script>
-    function carregarMateria(materia) {
-      // Redireciona para a página da matéria (você criará depois)
-      window.location.href = `materia.html?nome=${materia}`;
+    // Dados simulados (substituir por chamada real ao bot)
+    const pdfDatabase = {
+      'Matemática': ['Logaritmos.pdf', 'MDC.pdf'],
+      'Física': ['Cinemática.pdf', 'Termodinâmica.pdf'],
+      'Química': ['Estequiometria.pdf', 'pH.pdf']
+    };
+
+    function carregarPDFs(materia) {
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('pdfs-section').style.display = 'block';
+      document.getElementById('pdfs-title').textContent = `PDFs de ${materia}`;
       
-      // Ou carrega PDF diretamente:
-      // window.open(`pdfs/${materia}.pdf`, "_blank");
+      const pdfList = document.getElementById('pdf-list');
+      pdfList.innerHTML = '';
+      
+      pdfDatabase[materia].forEach(pdf => {
+        const pdfItem = document.createElement('div');
+        pdfItem.className = 'pdf-item';
+        pdfItem.innerHTML = `
+          <input type="checkbox" id="${pdf}" onchange="selecionarPDF('${pdf}')">
+          <label for="${pdf}">${pdf.replace('.pdf', '')}</label>
+        `;
+        pdfList.appendChild(pdfItem);
+      });
+    }
+
+    function selecionarPDF(pdfNome) {
+      const downloadArea = document.getElementById('download-area');
+      const pdfLink = document.createElement('a');
+      
+      // Simulação de busca do PDF (implementar comunicação com bot)
+      pdfLink.href = `https://api.sinapse.com/pdf/${encodeURIComponent(pdfNome)}`;
+      pdfLink.target = '_blank';
+      pdfLink.className = 'pdf-download';
+      pdfLink.innerHTML = `
+        📄 ${pdfNome} 
+        <button onclick="downloadPDF('${pdfNome}')">Baixar</button>
+      `;
+      
+      downloadArea.appendChild(pdfLink);
+    }
+
+    async function downloadPDF(pdfNome) {
+      try {
+        // Implementar comunicação real com o bot
+        const response = await fetch(`/api/get-pdf?name=${pdfNome}`);
+        const pdfData = await response.blob();
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(pdfData);
+        link.download = pdfNome;
+        link.click();
+      } catch (error) {
+        alert('Erro ao baixar o PDF');
+      }
     }
   </script>
 </body>
