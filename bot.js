@@ -1,4 +1,11 @@
 // bot.js
+// Adicione isso para permitir CORS (comunicação entre frontend/backend)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
+
 const { Telegraf } = require('telegraf');
 const express = require('express');
 const axios = require('axios');
