@@ -161,16 +161,11 @@
 
     async function downloadPDF(pdfNome) {
   try {
-    // Substitua pela URL do seu ngrok (obtida no passo 3)
-    const response = await fetch('https://SEU-NGROK.ngrok.io/api/get-pdf?name=' + pdfNome);
-    const blob = await response.blob();
+    // Substitua pelo seu URL do Ngrok
+    const ngrokUrl = "https://5040-2804-14d-78b1-5035-913b-c5c2-deca-cc85.ngrok-free.app";
+    const response = await fetch(`${ngrokUrl}/api/get-pdf?name=${pdfNome}`);
     
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = pdfNome;
-    link.click();
-  } catch (error) {
-    alert('Erro ao baixar. Verifique sua conexão.');
+    // Restante do código mantido igual...
   }
 }
   </script>
