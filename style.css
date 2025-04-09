@@ -70,3 +70,38 @@ h1 {
   color: #b388ff;
   text-shadow: 0 0 8px rgba(179, 136, 255, 0.6);
 }
+
+/* --- NOVOS ESTILOS ADICIONADOS AQUI --- */
+.materias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.telegram-button {
+  background: #2ea6ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.telegram-button:hover {
+  background: #1c8ad9;
+  transform: translateY(-2px);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 300px;
+}
