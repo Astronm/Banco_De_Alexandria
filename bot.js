@@ -1,63 +1,30 @@
 // bot.js
-// Adicione isso para permitir CORS (comunicação entre frontend/backend)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
-
 const { Telegraf } = require('telegraf');
 const express = require('express');
 const axios = require('axios');
 require('dotenv').config();
 
-// Configuração inicial
-const bot = new Telegraf(process.env.BOT_TOKEN);
+// 1. CONFIGURAÇÃO CORS (COLOQUE AQUI!)
 const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://5040-2804-14d-78b1-5035-913b-c5c2-deca-cc85.ngrok-free.app');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
 
-// Banco de dados simples (substitua por um real depois)
+// 2. CONFIGURAÇÃO INICIAL DO BOT
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
+// 3. BANCO DE DADOS (mantenha o restante igual)
 const pdfDatabase = {};
 
-// 1. Monitorar novos PDFs no canal
-bot.on('message', async (ctx) => {
-  if (ctx.message.document) {
-    const fileName = ctx.message.document.file_name;
-    const fileId = ctx.message.document.file_id;
-    
-    // Extrai a matéria do nome do arquivo (ex: "Matematica-Logaritmos.pdf")
-    const materia = fileName.split('-')[0] || 'Geral';
-    
-    pdfDatabase[fileName] = {
-      file_id: fileId,
-      materia: materia
-    };
-    
-    console.log(`PDF registrado: ${fileName} (Matéria: ${materia})`);
-  }
-});
+// ... (código existente de monitoramento de PDFs)
 
-// 2. Rota para download
+// 4. ROTA PARA DOWNLOAD (mantenha igual)
 app.get('/api/get-pdf', async (req, res) => {
-  try {
-    const pdfName = req.query.name;
-    
-    if (!pdfDatabase[pdfName]) {
-      return res.status(404).send('PDF não encontrado');
-    }
-
-    const fileLink = await bot.telegram.getFileLink(pdfDatabase[pdfName].file_id);
-    const response = await axios.get(fileLink, { responseType: 'stream' });
-    
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${pdfName}"`);
-    response.data.pipe(res);
-    
-  } catch (error) {
-    console.error('Erro no download:', error);
-    res.status(500).send('Erro ao baixar PDF');
-  }
+  // ... código existente
 });
 
-// Iniciar servidores
+// 5. INICIAR SERVIDORES
 app.listen(3000, () => console.log('Servidor de PDFs rodando na porta 3000'));
 bot.launch().then(() => console.log('Bot iniciado'));
