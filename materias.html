@@ -1,82 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sinapse - Selecionar Matéria</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para o vídeo de fundo (iguais aos da index.html) */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video-background iframe {
+        width: 100vw; /* Ajustado para cobrir viewport */
+        height: 56.25vw; /* 16:9 aspect ratio */
+        min-width: 100vh; /* Mínimo para cobrir altura em modo retrato */
+        min-height: 100vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Ajustes específicos para esta página */
+    .materias-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(124, 77, 255, 0.3);
+        width: 90%;
+        max-width: 600px; /* Aumentar largura máxima para comportar grid */
+    }
+
+     /* Estilo para a lista de PDFs - usando botões Telegram */
+    .pdfs-container {
+        margin-top: 20px;
+        max-height: 300px; /* Altura máxima antes de rolar */
+        overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+        padding-right: 10px; /* Espaço para a barra de rolagem */
+    }
+
+     /* Ajustes nos botões dentro da lista de PDF */
+    .pdf-list .telegram-button {
+        display: block; /* Faz cada botão ocupar uma linha */
+        width: 100%;    /* Ocupa toda a largura disponível */
+        margin-bottom: 10px; /* Espaçamento entre botões de PDF */
+        text-align: left; /* Alinha texto à esquerda */
+        padding-left: 20px;
+    }
+
+  </style>
 </head>
 <body>
   <div class="video-background">
+    <iframe src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+            frameborder="0"
+            allow="autoplay; fullscreen"></iframe>
   </div>
 
-  <!-- Seção de matérias (HTML modificado) -->
   <div class="container">
-    <h1>Selecione a Matéria</h1>
-    
-    <div class="materias-grid">
-      <div class="telegram-button" onclick="carregarPDFs('Matemática')">
-        🧮 Matemática
-      </div>
-      <div class="telegram-button" onclick="carregarPDFs('Física')">
-        ⚛️ Física
-      </div>
-      <div class="telegram-button" onclick="carregarPDFs('Química')">
-        🧪 Química
+    <div class="materias-container">
+      <h1>Selecione a Matéria</h1>
+
+      <div class="materias-grid">
+        <button class="telegram-button" onclick="carregarPDFs('Matemática')">
+          🧮 Matemática
+        </button>
+        <button class="telegram-button" onclick="carregarPDFs('Física')">
+          ⚛️ Física
+        </button>
+        <button class="telegram-button" onclick="carregarPDFs('Química')">
+          🧪 Química
+        </button>
+        </div>
+
+      <div id="pdfs-section" class="pdfs-container" style="display: none;"> <h2 style="color: #b388ff; margin-bottom: 15px;">Arquivos Disponíveis:</h2>
+        <div id="pdf-list">
+          </div>
       </div>
     </div>
-
-    <div id="pdfs-section" class="pdfs-container">
-      <div id="pdf-list" class="pdf-list"></div>
-    </div>
-
-   <button class="telegram-button back-btn" onclick="voltar()">
-    <span style="margin-right: 8px;">←</span> Voltar
-   </button>
   </div>
 
-  <!-- 𝗔𝗗𝗜𝗖𝗜𝗢𝗡𝗘 𝗢 𝗦𝗖𝗥𝗜𝗣𝗧 𝗔𝗤𝗨𝗜 ↓ -->
+  <button class="telegram-button back-btn" onclick="voltar()">← Voltar</button>
+
   <script>
-    // Dados simulados
+    // Dados simulados (IMPORTANTE: Idealmente viriam do backend)
     const pdfDatabase = {
-      'Matemática': ['Logaritmos.pdf', 'MDC.pdf'],
-      'Física': ['Cinemática.pdf', 'Termodinâmica.pdf'],
-      'Química': ['Estequiometria.pdf', 'pH.pdf']
+      'Matemática': ['Logaritmos.pdf', 'MDC.pdf', 'Funções.pdf'], // Exemplo com mais PDFs
+      'Física': ['Cinemática.pdf', 'Termodinâmica.pdf', 'Óptica.pdf'],
+      'Química': ['Estequiometria.pdf', 'pH.pdf', 'Orgânica_Basica.pdf']
     };
 
-    function carregarPDFs(materia) {
-      const pdfList = document.getElementById('pdf-list');
-      pdfList.innerHTML = '';
-      
-      pdfDatabase[materia].forEach(pdf => {
-        const nomeSemExtensao = pdf.replace('.pdf', '');
-        pdfList.innerHTML += `
-          <button class="telegram-button" onclick="downloadPDF('${pdf}')">
-            ${nomeSemExtensao}
-          </button>
-        `;
-      });
+    const materiasGrid = document.querySelector('.materias-grid');
+    const pdfsSection = document.getElementById('pdfs-section');
+    const pdfList = document.getElementById('pdf-list');
+    const mainTitle = document.querySelector('.materias-container h1'); // Seleciona o H1 principal
 
-      document.getElementById('pdfs-section').style.display = 'block';
+    function carregarPDFs(materia) {
+      pdfList.innerHTML = ''; // Limpa a lista anterior
+
+      if (pdfDatabase[materia] && pdfDatabase[materia].length > 0) {
+          pdfDatabase[materia].forEach(pdf => {
+            // Remove a extensão .pdf para exibir nome mais limpo
+            const nomeSemExtensao = pdf.replace(/\.pdf$/i, ''); // Usando regex para case-insensitive
+            const button = document.createElement('button');
+            button.className = 'telegram-button'; // Usa o mesmo estilo
+            button.textContent = nomeSemExtensao;
+            button.onclick = () => downloadPDF(pdf); // Chama download ao clicar
+            pdfList.appendChild(button);
+          });
+      } else {
+          pdfList.innerHTML = '<p style="color: #ccc;">Nenhum arquivo encontrado para esta matéria.</p>';
+      }
+
+      // Esconde a grade de matérias e mostra a seção de PDFs
+      materiasGrid.style.display = 'none';
+      pdfsSection.style.display = 'block';
+      mainTitle.textContent = materia; // Atualiza o título principal para o nome da matéria
     }
 
     function voltar() {
-      document.getElementById('pdfs-section').style.display = 'none';
+      // Esconde a seção de PDFs e mostra a grade de matérias novamente
+      pdfsSection.style.display = 'none';
+      materiasGrid.style.display = 'grid'; // Volta para display grid
+      mainTitle.textContent = 'Selecione a Matéria'; // Restaura o título original
+      pdfList.innerHTML = ''; // Limpa a lista de PDFs ao voltar
     }
 
     async function downloadPDF(pdfNome) {
+        // Mostra um feedback visual (opcional)
+        const originalButtonText = event.target.textContent;
+        event.target.textContent = 'Baixando...';
+        event.target.disabled = true;
+
       try {
-        const response = await fetch('https://5040-2804-14d-78b1-5035-913b-c5c2-deca-cc85.ngrok-free.app/api/get-pdf?name=' + pdfNome);
+        // IMPORTANTE: Use o URL correto do seu backend ngrok (ou o URL de produção)
+        const backendUrl = 'https://5040-2804-14d-78b1-5035-913b-c5c2-deca-cc85.ngrok-free.app';
+        const response = await fetch(`${backendUrl}/api/get-pdf?name=${encodeURIComponent(pdfNome)}`);
+
+        if (!response.ok) {
+            // Se a resposta não for OK (ex: 404 Not Found, 500 Server Error)
+            throw new Error(`Erro HTTP: ${response.status} ${response.statusText}`);
+        }
+
         const blob = await response.blob();
-        
+
+        // Verifica se o blob recebido é realmente um PDF (opcional mas recomendado)
+        if (blob.type !== 'application/pdf') {
+            console.warn('Resposta recebida não é um PDF. Tipo:', blob.type);
+             // Tenta ler como texto para ver se há uma mensagem de erro do backend
+            const errorText = await blob.text();
+            throw new Error(`O servidor não retornou um PDF. Resposta: ${errorText}`);
+        }
+
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = pdfNome;
+        link.download = pdfNome; // Nome do arquivo para download
+        document.body.appendChild(link); // Necessário para Firefox
         link.click();
+        document.body.removeChild(link); // Limpa o link após o clique
+        URL.revokeObjectURL(link.href); // Libera memória
+
       } catch (error) {
-        alert('Erro ao baixar. Verifique sua conexão.');
+        console.error('Erro ao baixar PDF:', error);
+        alert(`Erro ao baixar o arquivo "${pdfNome}". Verifique a conexão e se o arquivo existe no servidor.\nDetalhe: ${error.message}`);
+      } finally {
+          // Restaura o botão independentemente de sucesso ou falha
+          if(event.target){
+            event.target.textContent = originalButtonText;
+            event.target.disabled = false;
+          }
       }
     }
+
+    // Script de ajuste do vídeo (igual ao da index.html)
+    function adjustVideo() {
+        const iframe = document.querySelector('.video-background iframe');
+        if (!iframe) return;
+        const videoRatio = 16 / 9;
+        const windowRatio = window.innerWidth / window.innerHeight;
+        if (windowRatio > videoRatio) {
+            iframe.style.width = window.innerWidth + 'px';
+            iframe.style.height = (window.innerWidth / videoRatio) + 'px';
+        } else {
+            iframe.style.height = window.innerHeight + 'px';
+            iframe.style.width = (window.innerHeight * videoRatio) + 'px';
+        }
+        iframe.style.transform = 'translate(-50%, -50%) scale(1.05)';
+    }
+    window.addEventListener('resize', adjustVideo);
+    window.addEventListener('load', adjustVideo);
   </script>
-  <!-- 𝗔𝗗𝗜𝗖𝗜𝗢𝗡𝗘 𝗢 𝗦𝗖𝗥𝗜𝗣𝗧 𝗔𝗤𝗨𝗜 ↑ -->
 
 </body>
 </html>
