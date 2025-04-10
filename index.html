@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sinapse - Bem-vindo!</title>
+  <title>Sinapse - Bem-vindo(a)!</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Estilos específicos para o vídeo de fundo (mantidos do original) */
+    /* Estilos específicos para o vídeo de fundo (mantidos) */
     .video-background {
       position: fixed;
       top: 0;
@@ -25,7 +25,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(1.05); /* Mantém pequeno scale */
     }
   </style>
 </head>
@@ -37,9 +37,13 @@
   </div>
 
   <div class="container">
-    <div class="welcome-container" style="padding: 40px 30px;"> <h1>Bem-vindo ao <span class="destaque">Sinapse</span>!</h1>
-      <p class="slogan">Seu banco de questões direto ao ponto.</p>
-      <button id="entrar-btn">Entrar</button> <p class="info">Toque em entrar para começar.</p>
+    <div class="welcome-container" style="padding: 40px 30px;">
+      <h1>Bem Vindo(a) à <span class="destaque">Sinapse</span>! 👋🏻</h1>
+      <p class="slogan">
+        O catalisador da sua inteligência! 🧠<br> Expanda seus horizontes, Sinapse por Sinapse! ⚡️
+      </p>
+      <button id="entrar-btn">Entrar</button>
+      <p class="info">Prepare-se para ativar suas redes de conhecimento!</p>
     </div>
   </div>
 
@@ -49,27 +53,22 @@
       window.location.href = 'materias.html';
     });
 
-    // Função de ajuste do vídeo (mantida do original, pode precisar de ajustes finos)
+    // Função de ajuste do vídeo (mantida)
     function adjustVideo() {
         const iframe = document.querySelector('.video-background iframe');
-        if (!iframe) return; // Garante que o iframe exista
-
-        const videoRatio = 16 / 9; // Proporção do vídeo (1920/1080)
+        if (!iframe) return;
+        const videoRatio = 16 / 9;
         const windowRatio = window.innerWidth / window.innerHeight;
-
         if (windowRatio > videoRatio) {
-            // Janela mais larga que o vídeo: ajustar largura
             iframe.style.width = window.innerWidth + 'px';
             iframe.style.height = (window.innerWidth / videoRatio) + 'px';
         } else {
-            // Janela mais alta que o vídeo: ajustar altura
             iframe.style.height = window.innerHeight + 'px';
             iframe.style.width = (window.innerHeight * videoRatio) + 'px';
         }
-         // Aplica um pequeno zoom para garantir que as bordas não apareçam
+        // Manter o scale aqui pode ajudar a garantir cobertura, mas pode cortar mais as bordas
         iframe.style.transform = 'translate(-50%, -50%) scale(1.05)';
     }
-
     window.addEventListener('resize', adjustVideo);
     window.addEventListener('load', adjustVideo); // Ajusta quando a página carrega
   </script>
