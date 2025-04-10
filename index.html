@@ -1,23 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sinapse - Bem-vindo!</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para o vídeo de fundo (mantidos do original) */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video-background iframe {
+      width: 100vw; /* Ajustado para cobrir viewport */
+      height: 56.25vw; /* 16:9 aspect ratio */
+      min-width: 100vh; /* Mínimo para cobrir altura em modo retrato */
+      min-height: 100vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
 <body>
-  <!-- Vídeo de fundo (mantido igual) -->
   <div class="video-background">
-    <iframe src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p" 
-            frameborder="0" 
+    <iframe src="https://player.vimeo.com/video/1072780855?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+            frameborder="0"
             allow="autoplay; fullscreen"></iframe>
   </div>
 
-  <!-- Container modificado -->
-  <div class="login-container">
-    <h2>Bem-vindo ao Sinapse!</h2>
-    <p style="color: #fff; margin-bottom: 25px;">Seu banco de questões inteligente</p>
-    <button id="login-btn">Acessar Questões</button>
+  <div class="container">
+    <div class="welcome-container" style="padding: 40px 30px;"> <h1>Bem-vindo ao <span class="destaque">Sinapse</span>!</h1>
+      <p class="slogan">Seu banco de questões direto ao ponto.</p>
+      <button id="entrar-btn">Entrar</button> <p class="info">Toque em entrar para começar.</p>
+    </div>
   </div>
 
   <script>
-    // Script mantido igual
-    document.getElementById('login-btn').addEventListener('click', function() {
+    // Redirecionamento para a página de matérias
+    document.getElementById('entrar-btn').addEventListener('click', function() {
       window.location.href = 'materias.html';
     });
-    // ... (código do vídeo)
+
+    // Função de ajuste do vídeo (mantida do original, pode precisar de ajustes finos)
+    function adjustVideo() {
+        const iframe = document.querySelector('.video-background iframe');
+        if (!iframe) return; // Garante que o iframe exista
+
+        const videoRatio = 16 / 9; // Proporção do vídeo (1920/1080)
+        const windowRatio = window.innerWidth / window.innerHeight;
+
+        if (windowRatio > videoRatio) {
+            // Janela mais larga que o vídeo: ajustar largura
+            iframe.style.width = window.innerWidth + 'px';
+            iframe.style.height = (window.innerWidth / videoRatio) + 'px';
+        } else {
+            // Janela mais alta que o vídeo: ajustar altura
+            iframe.style.height = window.innerHeight + 'px';
+            iframe.style.width = (window.innerHeight * videoRatio) + 'px';
+        }
+         // Aplica um pequeno zoom para garantir que as bordas não apareçam
+        iframe.style.transform = 'translate(-50%, -50%) scale(1.05)';
+    }
+
+    window.addEventListener('resize', adjustVideo);
+    window.addEventListener('load', adjustVideo); // Ajusta quando a página carrega
   </script>
 </body>
+</html>
